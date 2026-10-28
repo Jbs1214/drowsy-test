@@ -1,0 +1,18 @@
+# 가상환경
+.venv/
+
+# 가중치
+models/
+*.pt
+*.pth
+*.onnx
+
+# 데이터셋
+data/
+
+# 비밀 키
+.env
+*.key
+
+# Python
+__pycache__/
