@@ -1,0 +1,42 @@
+# Data & models (too large for GitHub)
+dataset/
+data/raw/
+data/processed/
+data/external/
+data/*.db
+data/*.sqlite*
+models/weights/*.pt
+models/weights/*.h5
+yolo*.pt
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+ultra_venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MLflow
+mlruns/
+
+# Backups & editor cruft
+*.bak
+
+# Tooling / agent state
+.claude/
+
+# Local experiment outputs (large or contain face images)
+drowsiness-dataset.zip
+mlflow.db
+eval_results/
+video_results/
