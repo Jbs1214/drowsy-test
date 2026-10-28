@@ -6,6 +6,7 @@
 
 | 폴더 | 모델 | 설명 |
 |---|---|---|
+| mobilenetv2 | MobileNetV2 + MediaPipe EAR/MAR | 영상 파일 추론(`run_video.py`)과 테스트셋 평가(`eval_test.py`)를 더한 OmerKhan33 파이프라인 |
 
 ## 실행
 
