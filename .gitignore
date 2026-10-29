@@ -9,6 +9,7 @@ models/
 
 # 데이터셋
 data/
+sleep/
 
 # 비밀 키
 .env
