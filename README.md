@@ -8,6 +8,7 @@
 |---|---|---|
 | mobilenetv2 | MobileNetV2 + MediaPipe EAR/MAR | 영상 파일 추론(`run_video.py`)과 테스트셋 평가(`eval_test.py`)를 더한 OmerKhan33 파이프라인 |
 | [`mobilevit/`](mobilevit/) | MobileViT v2 ([mosesb/drowsiness-detection-mobileViT-v2](https://huggingface.co/mosesb/drowsiness-detection-mobileViT-v2)) | 웹캠·영상 감지, 모델 2초 평균 판정, 화면·소리 경고 |
+| [`mediapipe/`](mediapipe/) | mediapipe Face Landmarker (규칙 기반, 학습 모델 없음) | 웹캠·영상 감지, 눈 감음·하품·고개 끄덕임 규칙, 화면·소리 경고 |
 
 ## 실행
 
@@ -39,5 +40,5 @@ pip install -r requirements.txt
 
 - `.venv/` (가상환경)
 - `models/`, `*.pt`, `*.pth`, `*.onnx` (가중치)
-- `data/` (데이터셋)
+- `data/`, `sleep/` (데이터셋)
 - `.env`, `*.key` (비밀 키)
