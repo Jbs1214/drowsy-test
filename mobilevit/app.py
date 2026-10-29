@@ -1,6 +1,7 @@
 import time
 import winsound
 from collections import deque
+from tkinter import Tk, filedialog
 
 import cv2
 from PIL import Image
@@ -28,9 +29,22 @@ def crop_largest_face(frame):
     return face, (x1, y1, x2, y2)
 
 
+def choose_video():
+    """영상 파일 경로를 반환한다. 취소하면 빈 문자열(웹캠 사용)."""
+    root = Tk()
+    root.withdraw()
+    path = filedialog.askopenfilename(
+        title="영상 선택 (취소하면 웹캠)",
+        filetypes=[("Video", "*.mp4 *.avi *.mov *.mkv"), ("All files", "*.*")],
+    )
+    root.destroy()
+    return path
+
+
 def main():
     model = load_model()
-    cap = cv2.VideoCapture(0)
+    path = choose_video()
+    cap = cv2.VideoCapture(path if path else 0)
     history = deque()  # (time, prob)
     last_beep = 0.0
     prev = time.time()
@@ -42,6 +56,8 @@ def main():
         now = time.time()
         fps = 1.0 / max(now - prev, 1e-6)
         prev = now
+        # 영상은 추론 때문에 느리게 재생되므로 판정 구간은 영상 시간 기준
+        t = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000 if path else now
 
         face, box = crop_largest_face(frame)
         drowsy = False
@@ -50,11 +66,11 @@ def main():
             cv2.putText(frame, "No face", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2)
         else:
             prob = predict_drowsy(model, face)
-            history.append((now, prob))
-            while now - history[0][0] > WINDOW_SEC:
+            history.append((t, prob))
+            while t - history[0][0] > WINDOW_SEC:
                 history.popleft()
             # 구간이 2초를 거의 다 채웠을 때만 판정 (프레임 간격 오차 허용)
-            full = now - history[0][0] >= WINDOW_SEC * 0.9
+            full = t - history[0][0] >= WINDOW_SEC * 0.9
             avg = sum(p for _, p in history) / len(history)
             drowsy = full and avg > THRESHOLD
 
