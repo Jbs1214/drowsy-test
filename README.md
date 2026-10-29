@@ -6,7 +6,7 @@
 
 | 폴더 | 모델 | 설명 |
 |---|---|---|
-| [`mobilevit/`](mobilevit/) | MobileViT v2 ([mosesb/drowsiness-detection-mobileViT-v2](https://huggingface.co/mosesb/drowsiness-detection-mobileViT-v2)) | 웹캠 실시간 감지, 2초 평균 판정, 화면·소리 경고 |
+| [`mobilevit/`](mobilevit/) | MobileViT v2 ([mosesb/drowsiness-detection-mobileViT-v2](https://huggingface.co/mosesb/drowsiness-detection-mobileViT-v2)) | 웹캠·영상 감지, 모델 2초 평균 + 눈 감음·하품·고개 끄덕임 규칙, 화면·소리 경고 |
 
 ## 실행
 
